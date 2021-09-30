@@ -14,6 +14,7 @@ class StaffInline(admin.StackedInline):
 class ExperienceInline(admin.StackedInline):
     model = models.Experience
     suit_classes = "suit-tab suit-tab-experience"
+    autocomplete_fields = ["position"]
     extra = 1
 
 

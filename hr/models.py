@@ -148,7 +148,9 @@ class Experience(models.Model):
     staff = models.ForeignKey(Staff, on_delete=models.CASCADE, verbose_name=_("Staff"))
     name = models.CharField(max_length=320, verbose_name=_("Name"))
     city = models.CharField(max_length=100, verbose_name=_("City"))
-    position = models.CharField(max_length=100, verbose_name=_("Position"))
+    position = models.ForeignKey(
+        "hr.Position", on_delete=models.PROTECT, verbose_name=_("Position")
+    )
     date_start = models.DateField(verbose_name=_("Date start"))
     date_end = models.DateField(verbose_name=_("Date end"))
 
