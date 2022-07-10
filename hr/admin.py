@@ -43,6 +43,11 @@ class FileInline(admin.TabularInline):
     extra = 1
 
 
+@admin.register(models.Category)
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ["name"]
+
+
 @admin.register(models.Department)
 class DepartmentAdmin(MPTTModelAdmin):
     inlines = [StaffInline]
@@ -81,6 +86,7 @@ class StaffAdmin(admin.ModelAdmin):
         "department",
         "specialization",
     ]
+    search_fields = ["first_name", "middle_name", "last_name"]
     autocomplete_fields = ["department", "position", "specialization"]
     suit_form_tabs = (
         ("general", _("General")),
@@ -118,6 +124,7 @@ class StaffAdmin(admin.ModelAdmin):
                     "department",
                     "position",
                     "specialization",
+                    "category",
                     "office",
                 ],
             },
