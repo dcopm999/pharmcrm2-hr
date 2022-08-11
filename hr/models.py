@@ -65,10 +65,9 @@ class Position(models.Model):
 
 
 class Staff(models.Model):
-    first_name = models.CharField(max_length=100, verbose_name=_("First name"))
-    middle_name = models.CharField(max_length=100, verbose_name=_("Middle name"))
-    last_name = models.CharField(max_length=100, verbose_name=_("Last name"))
-    date_birth = models.DateField(verbose_name=_("Birth day"))
+    user = models.ForeignKey(
+        UserModel, on_delete=models.CASCADE, verbose_name=_("User")
+    )
     specialization = models.ForeignKey(
         Specialization, on_delete=models.PROTECT, verbose_name=_("Specialization")
     )
@@ -97,7 +96,7 @@ class Staff(models.Model):
     )
 
     def __str__(self):
-        return f"{self.last_name} {self.first_name} {self.middle_name}"
+        return self.user.__str__()
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)

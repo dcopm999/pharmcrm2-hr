@@ -80,14 +80,12 @@ class StaffAdmin(admin.ModelAdmin):
         PersonalRowInline,
     ]
     list_display = [
-        "last_name",
-        "first_name",
-        "middle_name",
+        "user",
         "department",
         "specialization",
     ]
-    search_fields = ["first_name", "middle_name", "last_name"]
-    autocomplete_fields = ["department", "position", "specialization"]
+    search_fields = ["user__first_name", "user__middle_name", "user__last_name"]
+    autocomplete_fields = ["department", "position", "specialization", "user"]
     suit_form_tabs = (
         ("general", _("General")),
         ("contact", _("Contacts")),
@@ -106,10 +104,7 @@ class StaffAdmin(admin.ModelAdmin):
                     "suit-tab-general",
                 ],
                 "fields": [
-                    "last_name",
-                    "first_name",
-                    "middle_name",
-                    "date_birth",
+                    "user",
                 ],
             },
         ),
